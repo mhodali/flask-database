@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: appdeploy
+  labels:
+    app: flask
+spec:
+  selector:
+    matchLabels:
+      app: flask
+  replicas: 3
+  strategy:
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: flask
+    spec:
+      containers:
+      - name: appdeploy
+        image: py
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 5000
+        env:
+          - name: db_root_password
+            valueFrom:
+              secretKeyRef:
+                name: flaskapi-secrets
+                key: db_root_password
+          - name: db_name
+            value: flaskapi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: flask-service
+spec:
+  ports:
+  - port: 5000
+    protocol: TCP
+    targetPort: 5000
+  selector:
+    app: flaskapi
+  type: LoadBalancer
