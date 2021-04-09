@@ -1,4 +1,4 @@
-# flask-database
+# flask-mysql kubernetes
 in this repo i use kubernetes to deploy flask api with mysql database 
 ## docker part
 1. install docker 
