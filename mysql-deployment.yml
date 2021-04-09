@@ -17,20 +17,17 @@ spec:
     spec:
       containers:
       - name: mysql
-        image: mysql
+        image: mysql:5.6
         imagePullPolicy: Never
         env:
         - name: MYSQL_ROOT_PASSWORD
-          valueFrom:
-            secretKeyRef:
-              name: flaskapi-secrets
-              key: db_root_password
+          value: mhodali
         ports:
         - containerPort: 3306
           name: db-container
         volumeMounts:
           - name: mysql-persistent-storage
-            mountPath: /var/lib/mysql
+            mountPath: /home/mysql
       volumes:
         - name: mysql-persistent-storage
           persistentVolumeClaim:

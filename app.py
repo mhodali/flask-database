@@ -7,8 +7,8 @@ mysql = MySQL()
 
 # MySQL configurations
 app.config["MYSQL_DATABASE_USER"] = "root"
-app.config["MYSQL_DATABASE_PASSWORD"] = os.getenv("db_root_password")
-app.config["MYSQL_DATABASE_DB"] = os.getenv("db_name")
+app.config["MYSQL_DATABASE_PASSWORD"] ="mhodali"
+app.config["MYSQL_DATABASE_DB"] ="flaskapi"
 app.config["MYSQL_DATABASE_HOST"] = os.getenv("MYSQL_SERVICE_HOST")
 app.config["MYSQL_DATABASE_PORT"] = int(os.getenv("MYSQL_SERVICE_PORT"))
 mysql.init_app(app)
@@ -17,12 +17,12 @@ mysql.init_app(app)
 def hello():
         if request.method == 'POST':
            firstname=request.form['firstname']
-           firstname=request.form['lastname']
+           lastname=request.form['lastname']
            email=request.form['email']
            birthday=request.form['birthday']
-           sql = "INSERT INTO users(user_name, user_email, user_password) " \
-              "VALUES(%s, %s, %s)"
-           data = (name, email, pwd)
+           sql = "INSERT INTO users(firstname,lastname,email, birthday) " \
+              "VALUES(%s, %s, %s, %s)"
+           data = (firstname,lastname,email, birthday)
            try:
               conn = mysql.connect()
               cursor = conn.cursor()
@@ -43,9 +43,9 @@ def hello():
                  resp.status_code = 200
                  return resp
               except Exception as exception:
-                 return jsonify(str(exception))
+                 return str(exception)
            except Exception as exception:
-              return jsonify(str(exception))
+              return str(exception)
 
         else:
            return render_template('index.html')

@@ -100,15 +100,6 @@ body {
       <input type="date" id="birthday" name="birthday"class="login-form-field"  >      
       <input type="submit" onclick="getinfo()" value="submit" id="login-form-submit">
     </form>
-    <script >
-        function getinfo(){           
-            var firstname =  document.getElementById("login-form").elements[0].value;
-            var lastname = document.getElementById("login-form").elements[1].value;
-            var eamil =document.getElementById("login-form").elements[2].value;
-            const birthday = document.getElementById("login-form").elements[3].value;
-            document.getElementById("login-header").outerHTML = eamil;
-        }
-        </script>
   </main>
 </body>
 
