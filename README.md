@@ -16,4 +16,4 @@ in this repo i use kubernetes to deploy flask api with mysql database
 9. create db flaskapi
 10. create table: `CREATE TABLE users(user_id INT PRIMARY KEY AUTO_INCREMENT, firstname VARCHAR(255), lastname VARCHAR(255),email VARCHAR(255), birthday VARCHAR(255));`
 11. exit 
-12. expose api 'minikube service flask-service'
+12. expose api: `minikube service flask-service`
